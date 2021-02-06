@@ -1,0 +1,12 @@
+version: '{build}'
+
+# The Visual Studio 2015 image has access to Visual C++ 2015 (needed for building vcpkg-tool)
+# and Visual C++ 2013 (needed for triggering the v120 triplet bug)
+image: Visual Studio 2015
+
+before_build:
+  - cd "%APPVEYOR_BUILD_FOLDER%"
+  - git submodule update --init --recursive
+
+build_script:
+  - powershell "%APPVEYOR_BUILD_FOLDER%/build.ps1"
